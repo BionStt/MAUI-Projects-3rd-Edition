@@ -11,15 +11,22 @@ public class TodoItemRepository : ITodoItemRepository
 
     public async Task<List<TodoItem>> GetItems()
     {
-        return null; // Just to make it build
+        await CreateConnection();
+        return await connection.Table<TodoItem>().ToListAsync();
     }
 
     public async Task AddItem(TodoItem item)
     {
+        await CreateConnection();
+        await connection.InsertAsync(item); 
+        OnItemAdded?.Invoke(this, item);
     }
 
     public async Task UpdateItem(TodoItem item)
     {
+        await CreateConnection();
+        await connection.UpdateAsync(item); 
+        OnItemUpdated?.Invoke(this, item);
     }
 
     public async Task AddOrUpdate(TodoItem item)
