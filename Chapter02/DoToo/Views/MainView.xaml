@@ -24,7 +24,19 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button Text="{Binding ShowAll,Converter={StaticResource filterTextConverter}, StringFormat='Filter: {0}'}" Command="{Binding ToggleFilterCommand}" />
+        <Button Style="{DynamicResource FilterButton}" 
+                Text="{Binding ShowAll,Converter={StaticResource filterTextConverter}, StringFormat='Filter: {0}'}"
+                BackgroundColor="{DynamicResource ActiveColor}"
+                TextColor="Black"
+                Command="{Binding ToggleFilterCommand}">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button" Binding="{Binding ShowAll}" Value="True">
+                    <Setter Property="BackgroundColor" Value="{DynamicResource CompletedColor}"/>
+                    <Setter Property="TextColor" Value="White" />
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
+
 
         <ListView x:Name="ItemsListView" Grid.Row="1" RowHeight="70" 
                   ItemsSource="{Binding Items}"
