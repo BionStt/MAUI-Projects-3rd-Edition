@@ -49,19 +49,24 @@
                         </ViewCell.ContextActions>
 
                         <Grid Padding="15,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="10" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <BoxView Grid.RowSpan="2" 
+                            <BoxView Grid.RowSpan="2"
                                      Color="{Binding Item.Completed,Converter={StaticResource statusColorConverter}}" />
-                            <Label Grid.Column="1"
-                                   Text="{Binding Item.Title}" FontSize="Large" />
-                            <Label Grid.Column="1" Grid.Row="1" 
-                                   Text="{Binding Item.Due}" FontSize="Micro" />
+                            <Label Grid.Column="1" Padding="5,0,0,0"
+                                   Text="{Binding Item.Title}" FontSize="Medium" />
+                            <Label Grid.Column="1" Grid.Row="1" VerticalTextAlignment="End" Padding="5,0,0,0"
+                                   Text="{Binding Item.Due, StringFormat='{0:MMMM d, yyyy}'}" FontSize="Micro" />
                             <Label Grid.Column="1" Grid.Row="1" HorizontalTextAlignment="End" Text="Completed" 
-                                   IsVisible="{Binding Item.Completed}" FontSize="Micro" />
+                                   IsVisible="{Binding Item.Completed}" FontSize="Micro"
+                                   TextColor="{StaticResource CompletedColor}"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
