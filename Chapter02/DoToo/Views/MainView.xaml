@@ -25,7 +25,9 @@
 
         <Button Text="Toggle filter" />
 
-        <ListView Grid.Row="1" RowHeight="70" ItemsSource="{Binding Items}">
+        <ListView x:Name="ItemsListView" Grid.Row="1" RowHeight="70" 
+                  ItemsSource="{Binding Items}"
+                  SelectedItem="{Binding SelectedItem}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="viewModels:TodoItemViewModel">
                     <ViewCell>
