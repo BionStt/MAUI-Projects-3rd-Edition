@@ -26,6 +26,9 @@ public static class MauiProgram
 
     public static MauiAppBuilder RegisterAppTypes(this MauiAppBuilder mauiAppBuilder)
     {
+        // Services
+        mauiAppBuilder.Services.AddSingleton<Services.INewsService>((serviceProvider) => new Services.NewsService());
+
         // ViewModels
         mauiAppBuilder.Services.AddTransient<ViewModels.HeadlinesViewModel>();
         
