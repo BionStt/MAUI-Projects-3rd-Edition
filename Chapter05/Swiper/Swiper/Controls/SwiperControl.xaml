@@ -10,6 +10,22 @@
         </Grid.ColumnDefinitions>
 
         <!-- ContentView for photo here -->
+        <ContentView x:Name="photo" Padding="40" Grid.ColumnSpan="3" >
+            <Grid x:Name="photoGrid" BackgroundColor="Black" Padding="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+
+                <BoxView Grid.RowSpan="2" Color="White" />
+
+                <Image x:Name="image" Margin="10" BackgroundColor="#AAAAAA" Aspect="AspectFill" />
+
+                <Label x:Name="loadingLabel" Text="Loading..." TextColor="White" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                <Label Grid.Row="1" x:Name="descriptionLabel" Margin="10,0" Text="A picture of grandpa" FontFamily="Bradley Hand" />
+            </Grid>
+        </ContentView>
 
         <!-- StackLayout for like here -->
 
