@@ -23,7 +23,10 @@ public partial class MainPage : ContentPage
 
     private void InsertPhoto()
     {
-        var photo = new SwiperControl(); 
+        var photo = new SwiperControl();
+        photo.OnDeny += Handle_OnDeny;
+        photo.OnLike += Handle_OnLike;
+
         this.MainGrid.Children.Insert(0, photo);
     }
 
