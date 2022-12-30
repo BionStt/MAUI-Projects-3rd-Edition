@@ -71,6 +71,18 @@ public partial class SwiperControl : ContentView
         return (Math.Abs(photo.TranslationX) > decisionBreakpoint);
     }
 
+    private void Exit()
+    {
+        MainThread.BeginInvokeOnMainThread(async () =>
+        {
+            var direction = photo.TranslationX < 0 ? -1 : 1;
+
+            await photo.TranslateTo(photo.TranslationX + (_screenWidth * direction), photo.TranslationY, 200, Easing.CubicIn);
+            var parent = Parent as Layout;
+            parent?.Children.Remove(this);
+        });
+    }
+
     private void OnPanUpdated(object sender, PanUpdatedEventArgs e)
     {
         switch (e.StatusType)
