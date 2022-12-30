@@ -80,8 +80,18 @@ public partial class SwiperControl : ContentView
         {
             var direction = photo.TranslationX < 0 ? -1 : 1;
 
-            await photo.TranslateTo(photo.TranslationX + (_screenWidth * direction), photo.TranslationY, 200, Easing.CubicIn);
-            var parent = Parent as Layout;
+            if (direction > 0)
+            {
+                OnLike?.Invoke(this, new EventArgs());
+            }
+
+            if (direction < 0)
+            {
+                OnDeny?.Invoke(this, new EventArgs());
+            }
+
+            await photo.TranslateTo(photo.TranslationX + (_screenWidth * direction), photo.TranslationY, 200, Easing.CubicIn); 
+            var parent = Parent as Layout; 
             parent?.Children.Remove(this);
         });
     }
