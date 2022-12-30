@@ -92,6 +92,7 @@ public partial class SwiperControl : ContentView
         photo.TranslationX = e.TotalX;
         photo.TranslationY = e.TotalY;
         photo.Rotation = _initialRotation + (photo.TranslationX / 25);
+        CalculatePanState(e.TotalX);
     }
 
     private void PanCompleted()
