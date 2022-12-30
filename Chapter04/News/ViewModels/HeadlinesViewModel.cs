@@ -15,7 +15,7 @@ public partial class HeadlinesViewModel : ViewModel
     [ObservableProperty]
     private NewsResult currentNews;
 
-    public HeadlinesViewModel(INewsService newsService)
+    public HeadlinesViewModel(INewsService newsService, INavigate navigation) : base (navigation)
     {
         this.newsService = newsService;
     }
