@@ -3,10 +3,5 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="News.Views.ArticleView"
              Title="ArticleView">
-    <VerticalStackLayout>
-        <Label 
-            Text="ArticleView!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <WebView Source="{Binding .}" />
 </ContentPage>
