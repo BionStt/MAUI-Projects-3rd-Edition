@@ -12,6 +12,9 @@ public partial class SwiperControl : ContentView
     private const double DeadZone = 0.4d;
     private const double DecisionThreshold = 0.4d;
 
+    public event EventHandler OnLike; 
+    public event EventHandler OnDeny;
+
     public SwiperControl()
     {
         InitializeComponent();
