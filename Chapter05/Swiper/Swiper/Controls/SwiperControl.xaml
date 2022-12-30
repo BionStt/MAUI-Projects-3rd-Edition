@@ -33,6 +33,10 @@
         </StackLayout>
 
         <!-- StackLayout for deny here -->
+        <StackLayout x:Name="denyStackLayout" Opacity="0" Padding="0, 100" HorizontalOptions="End">
+            <Label Text="DENY" TextColor="Red" FontSize="30" Rotation="-20" FontAttributes="Bold" />
+        </StackLayout>
+
     </Grid>
 
 </ContentView>
