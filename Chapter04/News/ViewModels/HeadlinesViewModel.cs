@@ -34,10 +34,10 @@ public partial class HeadlinesViewModel : ViewModel
     }
 
     [RelayCommand]
-    public void ItemSelected(object selectedItem)
+    public async Task ItemSelected(object selectedItem)
     {
         var selectedArticle = selectedItem as Article;
         var url = HttpUtility.UrlEncode(selectedArticle.Url);
-        // Placeholder for more code later on
+        await Navigation.NavigateTo($"articleview?url={url}");
     }
 }
