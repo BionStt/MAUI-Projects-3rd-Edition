@@ -116,6 +116,14 @@ public partial class SwiperControl : ContentView
 
     private void PanCompleted()
     {
+        if (CheckForExitCriteria())
+        {
+            Exit();
+        }
+
+        likeStackLayout.Opacity = 0;
+        denyStackLayout.Opacity = 0;
+
         photo.TranslateTo(0, 0, 250, Easing.SpringOut);
         photo.RotateTo(_initialRotation, 250, Easing.SpringOut);
         photo.ScaleTo(1, 250);
