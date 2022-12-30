@@ -28,6 +28,9 @@
         </ContentView>
 
         <!-- StackLayout for like here -->
+        <StackLayout x:Name="likeStackLayout" Grid.Column="2" Opacity="0" Padding="0, 100">
+            <Label Text="LIKE" TextColor="Lime" FontSize="30" Rotation="30" FontAttributes="Bold" />
+        </StackLayout>
 
         <!-- StackLayout for deny here -->
     </Grid>
