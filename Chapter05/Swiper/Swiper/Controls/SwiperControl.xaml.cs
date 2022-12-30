@@ -9,6 +9,9 @@ public partial class SwiperControl : ContentView
 
     private double _screenWidth = -1;
 
+    private const double DeadZone = 0.4d;
+    private const double DecisionThreshold = 0.4d;
+
     public SwiperControl()
     {
         InitializeComponent();
@@ -38,6 +41,27 @@ public partial class SwiperControl : ContentView
         }
 
         _screenWidth = Application.Current.MainPage.Width;
+    }
+
+    private void CalculatePanState(double panX)
+    {
+        var halfScreenWidth = _screenWidth / 2;
+        var deadZoneEnd = DeadZone * halfScreenWidth;
+
+        if (Math.Abs(panX) < deadZoneEnd)
+        {
+
+            return;
+        }
+
+        var passedDeadzone = panX < 0 ? panX + deadZoneEnd : panX - deadZoneEnd;
+        var decisionZoneEnd = DecisionThreshold * halfScreenWidth; 
+        var opacity = passedDeadzone / decisionZoneEnd;
+
+        opacity = double.Clamp(opacity, -1d, 1d);
+
+        likeStackLayout.Opacity = opacity;
+        denyStackLayout.Opacity = -opacity;
     }
 
     private void OnPanUpdated(object sender, PanUpdatedEventArgs e)
