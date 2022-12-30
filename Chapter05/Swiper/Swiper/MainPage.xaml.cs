@@ -9,5 +9,20 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
         MainGrid.Children.Add(new SwiperControl());
     }
+
+    private void AddInitialPhotos()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            InsertPhoto();
+        }
+    }
+
+    private void InsertPhoto()
+    {
+        var photo = new SwiperControl(); 
+        this.MainGrid.Children.Insert(0, photo);
+    }
+
 }
 
