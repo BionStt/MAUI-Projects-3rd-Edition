@@ -7,6 +7,8 @@ public partial class SwiperControl : ContentView
     private readonly double _initialRotation;
     private static readonly Random _random = new Random();
 
+    private double _screenWidth = -1;
+
     public SwiperControl()
     {
         InitializeComponent();
@@ -24,6 +26,18 @@ public partial class SwiperControl : ContentView
 
         loadingLabel.SetBinding(IsVisibleProperty, "IsLoading"); 
         loadingLabel.BindingContext = image;
+    }
+
+    protected override void OnSizeAllocated(double width, double height)
+    {
+        base.OnSizeAllocated(width, height);
+
+        if (Application.Current.MainPage == null)
+        {
+            return;
+        }
+
+        _screenWidth = Application.Current.MainPage.Width;
     }
 
     private void OnPanUpdated(object sender, PanUpdatedEventArgs e)
