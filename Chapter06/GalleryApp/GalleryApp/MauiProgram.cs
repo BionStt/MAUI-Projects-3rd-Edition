@@ -22,6 +22,9 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IPhotoImporter>(serviceProvider => new PhotoImporter());
 
+        builder.Services.AddTransient<Views.MainView>();
+        builder.Services.AddTransient<Views.GalleryView>();
+
         return builder.Build();
 	}
 }
