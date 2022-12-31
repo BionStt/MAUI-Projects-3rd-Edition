@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿namespace GalleryApp;
 
-namespace GalleryApp;
+using GalleryApp.Services;
+using Microsoft.Extensions.Logging;
 
 public static class MauiProgram
 {
@@ -19,6 +20,8 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+        builder.Services.AddSingleton<IPhotoImporter>(serviceProvider => new PhotoImporter());
+
+        return builder.Build();
 	}
 }
