@@ -1,6 +1,8 @@
 ﻿namespace GalleryApp.ViewModels;
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using GalleryApp.Models;
 using GalleryApp.Services;
 using System.Collections.ObjectModel;
@@ -13,9 +15,13 @@ public partial class GalleryViewModel : ViewModel
     [ObservableProperty]
     public ObservableCollection<Photo> photos;
 
-    public GalleryViewModel(IPhotoImporter photoImporter) : base()
+    [ObservableProperty]
+    public ILocalStorage localStorage;
+
+    public GalleryViewModel(IPhotoImporter photoImporter, ILocalStorage localStorage) : base()
     {
         this.photoImporter = photoImporter; 
+        this.localStorage = localStorage; 
     }
 
     override protected internal async Task Initialize()
@@ -61,5 +67,15 @@ public partial class GalleryViewModel : ViewModel
             var collection = (ObservableCollection<Photo>)sender; 
             collection.CollectionChanged -= Collection_CollectionChanged;
         }
+    }
+
+    [RelayCommand]
+    public void AddFavorites(List<Photo> photos)
+    {
+        foreach (var photo in photos)
+        {
+            localStorage.Store(photo.Filename);
+        }
+        WeakReferenceMessenger.Default.Send<string>(Messages.FavoritesAddedMessage);
     }
 }
