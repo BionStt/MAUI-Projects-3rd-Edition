@@ -27,7 +27,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <CollectionView x:Name="Photos" ItemsSource="{Binding Photos}" EmptyView="{Binding}">
+    <CollectionView x:Name="Photos" ItemsSource="{Binding Photos}" EmptyView="{Binding}" RemainingItemsThreshold="5" RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}">
         <CollectionView.ItemsLayout>
             <GridItemsLayout Orientation="Vertical" Span="3" HorizontalItemSpacing="0" />
         </CollectionView.ItemsLayout>

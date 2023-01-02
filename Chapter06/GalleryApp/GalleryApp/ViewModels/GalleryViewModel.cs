@@ -36,4 +36,30 @@ public partial class GalleryViewModel : ViewModel
             Photos.CollectionChanged -= Photos_CollectionChanged;
         }
     }
+
+    private int currentStartIndex = 0;
+
+    [RelayCommand]
+    public async Task LoadMore()
+    {
+        currentStartIndex += 20;
+        itemsAdded = 0;
+        var collection = await photoImporter.Get(currentStartIndex, 20);
+        collection.CollectionChanged += Collection_CollectionChanged;
+    }
+
+    private int itemsAdded;
+    private void Collection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs args)
+    {
+        foreach (Photo photo in args.NewItems)
+        {
+            itemsAdded++; 
+            Photos.Add(photo);
+        }
+        if (itemsAdded == 20)
+        {
+            var collection = (ObservableCollection<Photo>)sender; 
+            collection.CollectionChanged -= Collection_CollectionChanged;
+        }
+    }
 }
