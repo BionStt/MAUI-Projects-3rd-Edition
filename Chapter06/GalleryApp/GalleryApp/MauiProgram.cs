@@ -23,7 +23,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<IPhotoImporter>(serviceProvider => new PhotoImporter());
         builder.Services.AddTransient<ILocalStorage>(ServiceProvider => new MauiLocalStorage());
 
+        builder.Services.AddTransient<ViewModels.MainViewModel>();
         builder.Services.AddTransient<ViewModels.GalleryViewModel>();
+
         builder.Services.AddTransient<Views.MainView>();
         builder.Services.AddTransient<Views.GalleryView>();
 
